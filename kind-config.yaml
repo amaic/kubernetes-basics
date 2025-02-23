@@ -1,0 +1,35 @@
+apiVersion: kind.x-k8s.io/v1alpha4
+kind: Cluster
+
+name: dev
+
+nodes:
+- role: control-plane
+  extraPortMappings:
+  - containerPort: 6443
+    hostPort: 6443
+    listenAddress: "192.168.178.62"
+  - containerPort: 2379
+    hostPort: 2379
+    listenAddress: "192.168.178.62"
+  - containerPort: 2380
+    hostPort: 2380
+    listenAddress: "192.168.178.62"
+  - containerPort: 10250
+    hostPort: 10250
+    listenAddress: "192.168.178.62"
+  extraMounts:
+  - hostPath: /opt/cni/bin
+    containerPath: /opt/cni/bin
+  kubeadmConfigPatches:
+  - |
+    kind: ClusterConfiguration
+    apiServer:
+      certSANs: [
+        "192.168.178.62"
+      ]
+
+- role: worker  
+
+networking:
+  disableDefaultCNI: true
