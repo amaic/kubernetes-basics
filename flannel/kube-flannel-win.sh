@@ -1,4 +1,0 @@
-controlPlaneEndpoint=$(kubectl get configmap -n kube-system kube-proxy -o jsonpath="{.data['kubeconfig\.conf']}" | grep server: | sed 's/.*\:\/\///g')
-kubernetesServiceHost=$(echo $controlPlaneEndpoint | cut -d ":" -f 1)
-kubernetesServicePort=$(echo $controlPlaneEndpoint | cut -d ":" -f 2)
-curl -L https://raw.githubusercontent.com/kubernetes-sigs/sig-windows-tools/master/hostprocess/flannel/flanneld/flannel-overlay.yml | sed 's/FLANNEL_VERSION/v0.21.5/g' | sed "s/KUBERNETES_SERVICE_HOST_VALUE/$kubernetesServiceHost/g" | sed "s/KUBERNETES_SERVICE_PORT_VALUE/$kubernetesServicePort/g" | kubectl apply -f -

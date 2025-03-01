@@ -1,3 +1,5 @@
 temp/
-*.modified.*
-*.adjusted.*
+*-final.*
+kube-flannel.yml
+flannel-overlay.yml
+kube-proxy.yml

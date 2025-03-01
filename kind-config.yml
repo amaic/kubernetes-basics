@@ -5,19 +5,20 @@ name: dev
 
 nodes:
 - role: control-plane
+  image: kindest/node:v1.32.2@sha256:f226345927d7e348497136874b6d207e0b32cc52154ad8323129352923a3142f
   extraPortMappings:
   - containerPort: 6443
     hostPort: 6443
-    listenAddress: "192.168.178.62"
+    listenAddress: "0.0.0.0"
   - containerPort: 2379
     hostPort: 2379
-    listenAddress: "192.168.178.62"
+    listenAddress: "0.0.0.0"
   - containerPort: 2380
     hostPort: 2380
-    listenAddress: "192.168.178.62"
+    listenAddress: "0.0.0.0"
   - containerPort: 10250
     hostPort: 10250
-    listenAddress: "192.168.178.62"
+    listenAddress: "0.0.0.0"
   extraMounts:
   - hostPath: /opt/cni/bin
     containerPath: /opt/cni/bin
@@ -26,10 +27,11 @@ nodes:
     kind: ClusterConfiguration
     apiServer:
       certSANs: [
-        "192.168.178.62"
+        "0.0.0.0"
       ]
 
 - role: worker  
+  image: kindest/node:v1.32.2@sha256:f226345927d7e348497136874b6d207e0b32cc52154ad8323129352923a3142f
   extraMounts:
   - hostPath: /opt/cni/bin
     containerPath: /opt/cni/bin
