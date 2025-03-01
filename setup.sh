@@ -5,21 +5,21 @@ echo "Root folder: $rootFolder"
 
 source "$rootFolder/.env"
 
-# "$rootFolder/setup-docker.sh"
-# "$rootFolder/setup-cni.sh"
-# "$rootFolder/setup-kind.sh"
-# "$rootFolder/setup-kubectl.sh"
+"$rootFolder/setup-docker.sh"
+"$rootFolder/setup-cni.sh"
+"$rootFolder/setup-kind.sh"
+"$rootFolder/setup-kubectl.sh"
 
-# sudo apt install -y jq yq
+sudo apt install -y jq yq
 
-# wget https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml \
-# --output-document="$rootFolder/kube-flannel.yml"
+wget https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml \
+--output-document="$rootFolder/kube-flannel.yml"
 
-# wget https://raw.githubusercontent.com/kubernetes-sigs/sig-windows-tools/master/hostprocess/flannel/flanneld/flannel-overlay.yml \
-# --output-document="$rootFolder/flannel-overlay.yml"
+wget https://raw.githubusercontent.com/kubernetes-sigs/sig-windows-tools/master/hostprocess/flannel/flanneld/flannel-overlay.yml \
+--output-document="$rootFolder/flannel-overlay.yml"
 
-# wget https://raw.githubusercontent.com/kubernetes-sigs/sig-windows-tools/master/hostprocess/flannel/kube-proxy/kube-proxy.yml \
-# --output-document="$rootFolder/kube-proxy.yml"
+wget https://raw.githubusercontent.com/kubernetes-sigs/sig-windows-tools/master/hostprocess/flannel/kube-proxy/kube-proxy.yml \
+--output-document="$rootFolder/kube-proxy.yml"
 
 if [ ! -e /proc/sys/net/bridge/bridge-nf-call-iptables ]; 
 then 
@@ -47,7 +47,7 @@ yq --yaml-output \
 ' \
 "$rootFolder/kind-config.yml" > "$rootFolder/kind-config-final.yml"
 
-# kind create cluster --config "$rootFolder/kind-config-final.yml"
+kind create cluster --config "$rootFolder/kind-config-final.yml"
 
 yq --yaml-output \
 '
@@ -55,7 +55,7 @@ yq --yaml-output \
 ' \
 "$rootFolder/kube-flannel.yml" > "$rootFolder/kube-flannel-final.yml"
 
-# kubectl apply --filename "$rootFolder/kube-flannel-final.yml"
+kubectl apply --filename "$rootFolder/kube-flannel-final.yml"
 
 controlPlaneEndpoint=$(
 kubectl get configmap --namespace kube-system kube-proxy --output json | \
@@ -102,7 +102,7 @@ yq --yaml-output \
 ' \
 "$rootFolder/flannel-overlay.yml" > "$rootFolder/flannel-overlay-final.yml"
 
-# kubectl apply --filename "$rootFolder/flannel-overlay-final.yml"
+kubectl apply --filename "$rootFolder/flannel-overlay-final.yml"
 
 yq --yaml-output \
 --arg kp "$KUBE_WIN_PROXY_VERSION" \
