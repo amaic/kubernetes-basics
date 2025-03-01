@@ -8,7 +8,7 @@ source "$rootFolder/.env"
 "$rootFolder/setup-docker.sh"
 "$rootFolder/setup-cni.sh"
 "$rootFolder/setup-kind.sh"
-"$rootFolder/setup-kubectl.sh"
+"$rootFolder/setup-kubetools.sh"
 
 sudo apt install -y jq yq
 

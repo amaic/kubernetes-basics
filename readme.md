@@ -1,11 +1,14 @@
 # Learn Kubernetes Basics
 
-[Learn Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)  
+[Docker engine install](https://docs.docker.com/engine/install/ubuntu/)  
 
-[Install and Set Up kubectl on Linux](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) 
+[Kubernetes basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)  
+[Kubernetes download current version](https://kubernetes.io/releases/download/)
+[Kubernetes download all](https://www.downloadkubernetes.com/)
 
-[Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)  
+[kubeadm install](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 
-[KinD Install from Release Binaries](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries)
+[kubectl install](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management) 
 
-[KinD Configuration](https://kind.sigs.k8s.io/docs/user/configuration/)
+[KinD install](https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries)
+[KinD configuration](https://kind.sigs.k8s.io/docs/user/configuration/)
