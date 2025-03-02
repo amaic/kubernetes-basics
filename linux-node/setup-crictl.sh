@@ -11,4 +11,12 @@ wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$CRICTL_VERS
 
 sudo tar --extract --file="$tempOutputFolder/crictl.tar.gz" --directory=/usr/local/bin
 
+cat <<"EOD" | sudo tee /etc/crictl.yaml
+runtime-endpoint: unix:///run/containerd/containerd.sock
+image-endpoint: unix:///run/containerd/containerd.sock
+timeout: 2
+debug: false
+pull-image-on-create: false
+EOD
+
 rm --recursive "$tempOutputFolder"
