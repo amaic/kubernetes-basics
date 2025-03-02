@@ -11,7 +11,7 @@ source "$rootFolder/../.env"
 "$rootFolder/../setup-kubetools.sh"
 "$rootFolder/setup-crictl.sh"
 
-sudo apt install -y jq yq
+sudo apt install -y jq yq kubelet
 
 sudo swapoff --all
 
