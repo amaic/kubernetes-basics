@@ -5,12 +5,13 @@ echo "Root folder: $rootFolder"
 
 source "$rootFolder/../.env"
 
-# "$rootFolder/setup-cni.sh"
-# "$rootFolder/setup-runc.sh"
-# "$rootFolder/setup-crictl.sh"
-# "$rootFolder/setup-containerd.sh"
+"$rootFolder/setup-cni.sh"
+"$rootFolder/setup-runc.sh"
+"$rootFolder/setup-containerd.sh"
+"$rootFolder/../setup-kubetools.sh"
+"$rootFolder/setup-crictl.sh"
 
-# sudo apt install -y jq yq
+sudo apt install -y jq yq
 
 sudo swapoff --all
 

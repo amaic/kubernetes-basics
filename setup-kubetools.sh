@@ -17,4 +17,4 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list   # helps tools such as command-not-found to work correctly
 
 sudo apt-get update
-sudo apt-get install -y kubectl kubeadm
+sudo apt-get install -y kubectl kubeadm cri-tools
