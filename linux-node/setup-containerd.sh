@@ -14,6 +14,9 @@ sudo wget https://raw.githubusercontent.com/containerd/containerd/main/container
 
 sudo tar --extract --file="$tempOutputFolder/containerd.tar.gz" --directory=/usr/local
 
+sudo mkdir /etc/containerd
+containerd config default | sudo tee /etc/containerd/config.toml > /dev/null
+
 sudo systemctl daemon-reload
 sudo systemctl enable --now containerd
 
