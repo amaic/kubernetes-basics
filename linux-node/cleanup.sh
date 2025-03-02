@@ -10,3 +10,5 @@ source "$rootFolder/../.env"
 "$rootFolder/cleanup-containerd.sh"
 "$rootFolder/cleanup-runc.sh"
 "$rootFolder/cleanup-cni.sh"
+
+sudo apt remove -y kubelet
