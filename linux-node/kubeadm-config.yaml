@@ -1,0 +1,16 @@
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: JoinConfiguration
+discovery:
+  bootstrapToken:
+    apiServerEndpoint: 0.0.0.0:6443
+    token: "xyz"
+    caCertHashes:
+      - "xyz"
+  tlsBootstrapToken: "xyz"
+nodeRegistration:
+  kubeletExtraArgs: 
+    - node-ip: "0.0.0.0"
+---
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: systemd
