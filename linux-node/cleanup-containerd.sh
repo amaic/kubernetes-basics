@@ -9,3 +9,5 @@ sudo systemctl daemon-reload
 
 sudo rm /usr/local/bin/containerd* /usr/local/bin/ctr
 sudo rm --recursive /etc/containerd
+sudo rm --recursive /run/containerd
+sudo rm --recursive /var/lib/containerd

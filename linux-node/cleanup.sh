@@ -5,8 +5,8 @@ echo "Root folder: $rootFolder"
 
 source "$rootFolder/../.env"
 
-"$rootFolder/cleanup-crictl.sh"
 "$rootFolder/../cleanup-kubetools.sh"
+"$rootFolder/cleanup-crictl.sh"
 "$rootFolder/cleanup-containerd.sh"
 "$rootFolder/cleanup-runc.sh"
 "$rootFolder/cleanup-cni.sh"
