@@ -10,7 +10,7 @@ source "$rootFolder/.env"
 "$rootFolder/setup-kind.sh"
 "$rootFolder/setup-kubetools.sh"
 
-sudo apt install -y jq yq
+sudo apt-get install -y jq yq
 
 wget https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml \
 --output-document="$rootFolder/kube-flannel.yml"

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo apt remove -y --allow-change-held-packages kubectl kubeadm cri-tools
+sudo apt-get remove -y --allow-change-held-packages kubectl kubeadm cri-tools
 
