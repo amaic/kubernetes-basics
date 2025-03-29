@@ -1,4 +1,5 @@
 #!/bin/bash
 
-[[ -n $(which kind) ]] && sudo rm "$(which kind)"
+sed --in-place '/kind completion/d' ~/.bashrc
 
+sudo rm /usr/local/bin/kind
