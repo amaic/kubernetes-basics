@@ -1,4 +1,8 @@
 #!/bin/bash
 
-sudo apt-get remove -y --allow-change-held-packages kubectl kubeadm cri-tools
+sed --in-place '/kubeadm/d' ~/.bashrc
+sed --in-place '/kubectl/d' ~/.bashrc
+
+sudo rm /usr/local/bin/kubeadm
+sudo rm /usr/local/bin/kubectl
 

@@ -1,20 +1,28 @@
 #!/bin/bash
 
 rootFolder=$(dirname "$BASH_SOURCE")
-source "$rootFolder/.env"
+. "$rootFolder/.env"
 
-sudo apt-get update
-# apt-transport-https may be a dummy package; if so, you can skip that package
-sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
+tempOutputFolder=$(mktemp --directory)
+echo "Temporary output folder: $tempOutputFolder"
 
-# If the folder `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
-# sudo mkdir -p -m 755 /etc/apt/keyrings
-curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBETOOL_VERSION/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg # allow unprivileged APT programs to read this keyring
+# https://www.downloadkubernetes.com/
+wget https://dl.k8s.io/v$KUBETOOLS_VERSION/bin/linux/$PLATFORM/kubeadm \
+--output-document="$tempOutputFolder/kubeadm"
 
-# This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBETOOL_VERSION/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list   # helps tools such as command-not-found to work correctly
+chmod +x "$tempOutputFolder/kubeadm"
+sudo mv "$tempOutputFolder/kubeadm" /usr/local/bin/kubeadm
 
-sudo apt-get update
-sudo apt-get install -y kubectl kubeadm cri-tools
+wget https://dl.k8s.io/v$KUBETOOLS_VERSION/bin/linux/$PLATFORM/kubectl \
+--output-document="$tempOutputFolder/kubectl"
+
+chmod +x "$tempOutputFolder/kubectl"
+sudo mv "$tempOutputFolder/kubectl" /usr/local/bin/kubectl
+
+cat <<"EOD" >> ~/.bashrc
+
+source <(kubeadm completion bash)
+source <(kubectl completion bash)
+EOD
+
+rm --recursive "$tempOutputFolder"
