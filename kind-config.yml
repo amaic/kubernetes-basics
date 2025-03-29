@@ -1,40 +1,42 @@
+# https://kind.sigs.k8s.io/docs/user/configuration/
 apiVersion: kind.x-k8s.io/v1alpha4
 kind: Cluster
 
-name: dev
+# https://kind.sigs.k8s.io/docs/user/configuration/#name-your-cluster
+name: <replace>
 
 nodes:
 - role: control-plane
-  image: kindest/node:v1.32.2@sha256:f226345927d7e348497136874b6d207e0b32cc52154ad8323129352923a3142f
+  image: <replace>
   extraPortMappings:
   - containerPort: 6443
     hostPort: 6443
-    listenAddress: "0.0.0.0"
+    listenAddress: <replace>
   - containerPort: 2379
     hostPort: 2379
-    listenAddress: "0.0.0.0"
+    listenAddress: <replace>
   - containerPort: 2380
     hostPort: 2380
-    listenAddress: "0.0.0.0"
+    listenAddress: <replace>
   - containerPort: 10250
     hostPort: 10250
-    listenAddress: "0.0.0.0"
+    listenAddress: <replace>
   extraMounts:
-  - hostPath: /opt/cni/bin
-    containerPath: /opt/cni/bin
+  - hostPath: <replace>
+    containerPath: <replace>
   kubeadmConfigPatches:
   - |
     kind: ClusterConfiguration
     apiServer:
       certSANs: [
-        "0.0.0.0"
+        <replace>
       ]
 
 - role: worker  
-  image: kindest/node:v1.32.2@sha256:f226345927d7e348497136874b6d207e0b32cc52154ad8323129352923a3142f
+  image: <replace>
   extraMounts:
-  - hostPath: /opt/cni/bin
-    containerPath: /opt/cni/bin
+  - hostPath: <replace>
+    containerPath: <replace>
 
 networking:
   podSubnet: "10.244.0.0/16"
